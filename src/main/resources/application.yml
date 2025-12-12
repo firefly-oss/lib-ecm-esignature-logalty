@@ -1,0 +1,16 @@
+firefly:
+  ecm:
+    esignature:
+      provider: logalty
+    adapter:
+      logalty:
+        signature:
+          generatorName: "SOON"
+          generatorEmail: "info@soon.es"
+          retryProtocol: 3
+          synchronous: false
+          certPath: "src/main/resources/7694_SIGNATURE.pfx"
+          certPin: "logalty"
+          trustStoreResource: "classpath:mi-truststore.jks"
+          trustStorePassword: "MiPassSeguro123"
+          trustStoreType: "JKS"

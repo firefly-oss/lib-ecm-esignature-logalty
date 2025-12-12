@@ -1,0 +1,1810 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="urn:logalty:schemas:services:1.0">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:core:1.0">
+            <import namespace="urn:logalty:schemas:forms:1.0"/>
+            <import namespace="urn:logalty:schemas:request:meta:1.0"/>
+            <import namespace="urn:logalty:schemas:process:meta:1.0"/>
+            <import namespace="urn:logalty:schemas:core:identity:1.0"/>
+            <import namespace="urn:logalty:schemas:metaProperty:1.0"/>
+            <import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+            <element name="request" type="pt:request"/>
+            <element name="forms">
+                <annotation>
+                    <documentation> Definición del Formulario de feedback </documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element ref="ptforms:instance"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="request_meta">
+                <annotation>
+                    <documentation> Información de la petición. </documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element ref="request_meta:service"/>
+                        <element ref="request_meta:time2close"/>
+                        <element ref="request_meta:time2save"/>
+                        <element minOccurs="0" ref="request_meta:time2start"/>
+                        <element minOccurs="0" ref="request_meta:time2startdatetime"/>
+                        <element ref="request_meta:lopd"/>
+                        <element minOccurs="0" ref="request_meta:userdatatransfer"/>
+                        <element minOccurs="0" ref="request_meta:signlevel"/>
+                        <element ref="request_meta:retryprotocol"/>
+                        <element ref="request_meta:synchronous"/>
+                        <element ref="request_meta:tsa"/>
+                        <element minOccurs="0" ref="request_meta:cod_type"/>
+                        <element minOccurs="0" ref="request_meta:cod_service"/>
+                        <element minOccurs="0" ref="request_meta:cod_product"/>
+                        <element minOccurs="0" ref="request_meta:delegate"/>
+                        <element minOccurs="0" ref="request_meta:externalId"/>
+                        <element minOccurs="0" ref="request_meta:requestCID"/>
+                        <element minOccurs="0" ref="request_meta:contractNif"/>
+                        <element minOccurs="0" ref="request_meta:duplicateKeyOff"/>
+                        <element maxOccurs="unbounded" ref="request_meta:userdefined"/>
+                        <element minOccurs="0" ref="request_meta:prefrank"/>
+                        <element minOccurs="0" ref="request_meta:signMethods"/>
+                        <element minOccurs="0" ref="request_meta:signMethodAlternative"/>
+                        <element minOccurs="0" ref="request_meta:authMethods"/>
+                        <element minOccurs="0" ref="request_meta:supervisionMethods"/>
+                        <element minOccurs="0" ref="request_meta:signBioparams"/>
+                        <element minOccurs="0" ref="request_meta:internal_pr"/>
+                        <element minOccurs="0" ref="request_meta:delegate_details"/>
+                        <element minOccurs="0" ref="request_meta:billing_ec"/>
+                        <element minOccurs="0" ref="request_meta:billing_details"/>
+                        <element minOccurs="0" ref="request_meta:nodeAcls"/>
+                        <element minOccurs="0" ref="request_meta:nodeCustody"/>
+                        <element minOccurs="0" ref="request_meta:stampedService"/>
+                        <element minOccurs="0" ref="request_meta:stampedServicePermissive"/>
+                        <element minOccurs="0" ref="request_meta:stampedOverrideSignature"/>
+                        <element minOccurs="0" ref="request_meta:receiverEndDownload"/>
+                        <element minOccurs="0" ref="request_meta:onePageXpress"/>
+                        <element minOccurs="0" ref="request_meta:onePageXpressAcp"/>
+                        <element minOccurs="0" ref="request_meta:aditionalEmailInfoResults"/>
+                        <element minOccurs="0" ref="request_meta:aditionalEmailInfoExternalFolderResults"/>
+                        <element minOccurs="0" ref="request_meta:externalFolder"/>
+                        <element minOccurs="0" ref="request_meta:zoomPDFViewer"/>
+                        <element minOccurs="0" ref="request_meta:addSignersInfo"/>
+                        <element minOccurs="0" ref="request_meta:signStamped"/>
+                        <element minOccurs="0" ref="request_meta:codeValidations"/>
+                        <element minOccurs="0" ref="request_meta:billing_product"/>
+                        <element minOccurs="0" ref="request_meta:launch_nested"/>
+                        <element minOccurs="0" ref="request_meta:nested_guid"/>
+                        <element minOccurs="0" ref="request_meta:nested_service"/>
+                        <element minOccurs="0" ref="request_meta:nested_override_child_params"/>
+                        <element minOccurs="0" ref="request_meta:nested_receiver_uuid"/>
+                        <element minOccurs="0" ref="request_meta:document_delivery_type"/>
+                        <element minOccurs="0" ref="request_meta:edelivery"/>
+                        <element minOccurs="0" ref="request_meta:providerCode"/>
+                        <element minOccurs="0" ref="request_meta:acceptanceMethod"/>
+                        <element minOccurs="0" ref="request_meta:redirectDelay"/>
+                        <element minOccurs="0" ref="request_meta:signPkiCloudparams"/>
+                        <element minOccurs="0" ref="request_meta:extractRbmInfo"/>
+                        <element minOccurs="0" ref="request_meta:provimadCustody"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="process_meta">
+                <annotation>
+                    <documentation> Información del proceso </documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element ref="process_meta:generator"/>
+                        <element minOccurs="0" ref="process_meta:creation-date"/>
+                        <element ref="process_meta:language"/>
+                        <element minOccurs="0" ref="process_meta:additional_language"/>
+                        <choice minOccurs="0">
+                            <element ref="identity:person"/>
+                            <element ref="process_meta:receivers"/>
+                        </choice>
+                        <element ref="process_meta:subject"/>
+                        <element ref="process_meta:body"/>
+                        <element ref="process_meta:url"/>
+                        <element minOccurs="0" ref="process_meta:url_back"/>
+                        <element ref="process_meta:email"/>
+                        <element minOccurs="0" ref="process_meta:email_from"/>
+                        <element minOccurs="0" ref="process_meta:enforce_download"/>
+                        <element minOccurs="0" ref="process_meta:enforce_download_non_html5"/>
+                        <element minOccurs="0" ref="process_meta:enforce_scroll"/>
+                        <element minOccurs="0" ref="process_meta:billing_info"/>
+                        <element maxOccurs="unbounded" ref="process_meta:userdefined"/>
+                        <element minOccurs="0" ref="process_meta:additional_final_email"/>
+                        <element minOccurs="0" ref="process_meta:additional_final_email_result"/>
+                        <element minOccurs="0" ref="process_meta:additional_email_info"/>
+                        <element minOccurs="0" ref="process_meta:additional_email_info_uncompressed"/>
+                        <element minOccurs="0" ref="process_meta:additional_email_acceptance"/>
+                        <element minOccurs="0" ref="process_meta:acceptance_email_info"/>
+                        <element minOccurs="0" ref="process_meta:extract_pdf_collections"/>
+                        <element minOccurs="0" ref="process_meta:xforms_flow"/>
+                        <element minOccurs="0" ref="process_meta:final_inform"/>
+                        <element minOccurs="0" ref="process_meta:emailTemplate"/>
+                        <element minOccurs="0" ref="process_meta:styleTemplate"/>
+                        <element minOccurs="0" ref="process_meta:smsTemplate"/>
+                        <element minOccurs="0" ref="process_meta:customTextTemplate"/>
+                        <element minOccurs="0" ref="process_meta:customFeedbackTemplate"/>
+                        <element minOccurs="0" ref="process_meta:custom_style_data"/>
+                        <element minOccurs="0" ref="process_meta:serviceOnEnd"/>
+                        <element minOccurs="0" ref="mp:metaProperties"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="binarycontent" type="pt:binarycontent">
+                <annotation>
+                    <documentation> Información del fichero. </documentation>
+                </annotation>
+            </element>
+            <element name="binarycontents">
+                <annotation>
+                    <documentation> Información de multiples ficheros. En caso de estar informado, deberá estar también informado el campo receivers </documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element ref="pt:binarycontentgroups"/>
+                        <element ref="pt:binarycontentitems"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="binarycontentgroups">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="pt:binarycontentgroup"/>
+                    </sequence>
+                    <attribute name="order-group" type="xs:boolean"/>
+                </complexType>
+            </element>
+            <element name="binarycontentgroup">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" ref="process_meta:body"/>
+                        <element minOccurs="0" ref="process_meta:xforms_flow"/>
+                        <element maxOccurs="unbounded" ref="pt:binarycontentgroupmember"/>
+                        <element minOccurs="0" ref="mp:metaProperties"/>
+                    </sequence>
+                    <attribute name="binary-content-group-id" type="xs:int" use="required"/>
+                    <attribute name="order-group-number" type="xs:int"/>
+                    <attribute name="order-sign" type="xs:boolean"/>
+                    <attribute name="min-optionals" type="xs:int"/>
+                    <attribute name="additional_final_email" type="xs:string" use="optional"/>
+                    <attribute name="additional_email_info" type="xs:string" use="optional"/>
+                    <attribute default="false" name="additional_email_info_uncompressed" type="xs:boolean" use="optional"/>
+                    <attribute default="false" name="extract_pdf_collections" type="xs:boolean" use="optional"/>
+                    <attribute default="false" name="acceptance-group" type="xs:boolean" use="optional"/>
+                </complexType>
+            </element>
+            <element name="binarycontentgroupmember" type="pt:binarycontentgroupmember"/>
+            <element name="binarycontentitems">
+                <complexType>
+                    <sequence>
+                        <choice>
+                            <element maxOccurs="unbounded" name="binarycontentitem" type="pt:binarycontent"/>
+                            <element maxOccurs="unbounded" ref="pt:binarycontentitemcomplex"/>
+                        </choice>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="response">
+                <complexType>
+                    <sequence>
+                        <element ref="pt:result"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="result">
+                <complexType>
+                    <sequence>
+                        <element name="main" type="xs:string"/>
+                        <element minOccurs="0" name="guid" type="xs:string"/>
+                        <element minOccurs="0" name="reason" type="xs:string"/>
+                        <element minOccurs="0" name="additionalInfo" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="binarycontentitemcomplex">
+                <complexType>
+                    <sequence>
+                        <element name="binarycontent" type="pt:binarycontent"/>
+                        <element minOccurs="0" ref="mp:metaProperties"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <complexType name="binarycontent">
+                <simpleContent>
+                    <extension base="xs:string">
+                        <attribute name="file-name" type="xs:string" use="required">
+                            <annotation>
+                                <documentation> Nombre del fichero </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="binary-content-id" type="xs:string" use="required">
+                            <annotation>
+                                <documentation> Identificador único del fichero en el EMISOR </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="content-transfer-encoding" type="xs:string" use="required">
+                            <annotation>
+                                <documentation> Codificación del fichero (base64 etc...) </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="type" type="xs:string" use="required">
+                            <annotation>
+                                <documentation> Tipo de aplicación (pdf, doc, etc.) </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="tokenText" type="xs:string">
+                            <annotation>
+                                <documentation> Text to replace in message. </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="third_party_id" type="xs:string">
+                            <annotation>
+                                <documentation> ID related to the company owner of the document. During the sign operation you can sign documents from different companies at the same time And company A cannot have access to documents of company 2. </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="lopd" type="xs:int">
+                            <annotation>
+                                <documentation> LOPD (Spanish law for protection of personal data) level related to actual document. 1 means minimum security, 3 is max security </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="enforce_scroll" type="xs:boolean">
+                            <annotation>
+                                <documentation> enables/disables enforce scroll for actual document </documentation>
+                            </annotation>
+                        </attribute>
+                        <attribute name="extractRbmInfo" type="xs:boolean">
+                            <annotation>
+                                <documentation> enable/disable RBM info extraction </documentation>
+                            </annotation>
+                        </attribute>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <complexType name="binarycontentgroupmember">
+                <attribute name="binary-content-id" type="xs:int" use="required"/>
+            </complexType>
+            <complexType name="request">
+                <choice>
+                    <sequence maxOccurs="1">
+                        <element minOccurs="1" ref="ds:Signature"/>
+                        <element ref="pt:request_meta"/>
+                        <element ref="pt:process_meta"/>
+                        <choice>
+                            <element ref="pt:binarycontents"/>
+                            <element ref="pt:binarycontent"/>
+                        </choice>
+                        <element maxOccurs="1" minOccurs="0" ref="pt:forms"/>
+                    </sequence>
+                    <sequence maxOccurs="1">
+                        <element ref="pt:request_meta"/>
+                        <element ref="pt:process_meta"/>
+                        <choice>
+                            <element ref="pt:binarycontents"/>
+                            <element ref="pt:binarycontent"/>
+                        </choice>
+                        <element maxOccurs="1" minOccurs="0" ref="pt:forms"/>
+                        <element minOccurs="1" ref="ds:Signature"/>
+                    </sequence>
+                </choice>
+            </complexType>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:forms:1.0">
+            <element name="reject">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="value" type="xs:string" use="required"/>
+                            <attribute name="name" type="xs:string" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="instance">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="20" minOccurs="0" ref="ptforms:reject"/>
+                        <element ref="ptforms:order"/>
+                        <element ref="ptforms:response"/>
+                        <element ref="ptforms:form"/>
+                    </sequence>
+                    <attribute name="id" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="order">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="ptforms:element"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="response">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="ptforms:responseitem"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="element">
+                <complexType>
+                    <attribute name="id" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="responseitem">
+                <complexType>
+                    <attribute name="id" type="xs:string" use="required"/>
+                    <attribute name="result" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="form">
+                <complexType>
+                    <sequence>
+                        <choice maxOccurs="unbounded">
+                            <element ref="ptforms:text"/>
+                            <element ref="ptforms:checkbox"/>
+                            <element ref="ptforms:input"/>
+                            <element ref="ptforms:select"/>
+                            <element ref="ptforms:textarea"/>
+                            <element ref="ptforms:br"/>
+                            <element ref="ptforms:file"/>
+                            <element ref="ptforms:images"/>
+                            <element ref="ptforms:imagesb64"/>
+                            <element ref="ptforms:othersb64"/>
+                            <element ref="ptforms:video"/>
+                            <element ref="ptforms:radiobuttons"/>
+                        </choice>
+                    </sequence>
+                    <attribute name="id" type="xs:string" use="required"/>
+                    <attribute name="locale" type="xs:string"/>
+                    <attribute name="step" type="xs:string"/>
+                    <attribute name="placement" type="xs:string"/>
+                    <attribute name="new-page" type="xs:boolean"/>
+                    <attribute name="show-select-all" type="xs:boolean"/>
+                </complexType>
+            </element>
+            <element name="text">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="show" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="checkbox">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element ref="ptforms:hint"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="value" type="xs:int" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="input">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element minOccurs="0" ref="ptforms:hint"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="type" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                            <attribute name="formatValidation" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="select">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element maxOccurs="unbounded" ref="ptforms:item"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="radiobuttons">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element maxOccurs="unbounded" ref="ptforms:item"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="item">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element ref="ptforms:value"/>
+                            </sequence>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="value" type="xs:integer"/>
+            <element name="textarea">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element ref="ptforms:hint"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <complexType name="label">
+                <sequence>
+                    <element ref="ptforms:label"/>
+                </sequence>
+            </complexType>
+            <element name="label" type="xs:string"/>
+            <element name="hint" type="xs:string"/>
+            <element name="allowed-extensions" type="xs:string"/>
+            <element name="min-size" type="xs:int"/>
+            <element name="max-size" type="xs:int"/>
+            <element name="min-resolution" type="xs:int"/>
+            <element name="max-resolution" type="xs:int"/>
+            <element name="min-width" type="xs:int"/>
+            <element name="max-width" type="xs:int"/>
+            <element name="min-height" type="xs:int"/>
+            <element name="max-height" type="xs:int"/>
+            <element name="allowed-resize" type="xs:int"/>
+            <element name="input-mode" type="ptforms:input-mode"/>
+            <element name="steps" nillable="true" type="xs:string"/>
+            <element name="validate-document" nillable="true" type="xs:boolean"/>
+            <element name="validate-face" nillable="true" type="xs:boolean"/>
+            <element name="validate-identification-number" nillable="true" type="xs:boolean"/>
+            <element name="validate-params" nillable="true" type="xs:boolean"/>
+            <element name="show-captcha-page" nillable="true" type="xs:boolean"/>
+            <element name="show-welcome-page" nillable="true" type="xs:boolean"/>
+            <element name="show-economic-data-page" nillable="true" type="xs:boolean"/>
+            <element name="show-personal-data-page" nillable="true" type="xs:boolean"/>
+            <element name="show-personal-info-page" nillable="true" type="xs:boolean"/>
+            <element name="show-capture-page" nillable="true" type="xs:boolean"/>
+            <element name="close-on-ir" type="xs:boolean"/>
+            <element name="custom-text-template" nillable="true" type="xs:string"/>
+            <element name="style-template" nillable="true" type="xs:string"/>
+            <element name="sms-template" nillable="true" type="xs:string"/>
+            <element name="email-template" nillable="true" type="xs:string"/>
+            <element name="capture-method" type="xs:string"/>
+            <element name="notice-method" type="xs:string"/>
+            <element name="mobile-alt" type="xs:string"/>
+            <element name="email-alt" type="xs:string"/>
+            <element name="email-cc" type="xs:string"/>
+            <element name="ocr-method" nillable="true" type="xs:string"/>
+            <element name="documents-category" nillable="true" type="xs:string"/>
+            <element name="video-attended" type="xs:boolean"/>
+            <element name="idcard-video" type="xs:boolean"/>
+            <element name="postpone-unattended-validation" type="xs:boolean"/>
+            <element name="support-email" type="xs:string"/>
+            <element name="email-subject" type="xs:string"/>
+            <element name="video-Purpose" nillable="true" type="xs:string"/>
+            <element name="show-QR-Notice" type="xs:boolean"/>
+            <element name="br"/>
+            <element name="file">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element ref="ptforms:hint"/>
+                                <element minOccurs="0" ref="ptforms:allowed-extensions"/>
+                                <element minOccurs="0" ref="ptforms:min-size"/>
+                                <element minOccurs="0" ref="ptforms:max-size"/>
+                                <element minOccurs="0" ref="ptforms:min-resolution"/>
+                                <element minOccurs="0" ref="ptforms:max-resolution"/>
+                                <element minOccurs="0" ref="ptforms:min-width"/>
+                                <element minOccurs="0" ref="ptforms:max-width"/>
+                                <element minOccurs="0" ref="ptforms:min-height"/>
+                                <element minOccurs="0" ref="ptforms:max-height"/>
+                                <element minOccurs="1" ref="ptforms:input-mode"/>
+                                <element minOccurs="0" ref="ptforms:allowed-resize"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <simpleType name="input-mode">
+                <restriction base="xs:int">
+                    <enumeration value="1"/>
+                    <!--  File  -->
+                    <enumeration value="2"/>
+                    <!--  ImageCapure  -->
+                    <enumeration value="3"/>
+                    <!--  FileAndImageCapture  -->
+                </restriction>
+            </simpleType>
+            <element name="idcard-image-type" type="ptforms:document-type-attr"/>
+            <complexType name="document-type-attr">
+                <simpleContent>
+                    <extension base="xs:string">
+                        <attribute name="subtype" type="xs:string" use="optional"> </attribute>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <element name="description" type="xs:string"/>
+            <element name="description-back" type="xs:string"/>
+            <element name="label-back" type="xs:string"/>
+            <element name="external-id" type="xs:string"/>
+            <element name="token-id" type="xs:string"/>
+            <element name="image">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <sequence>
+                                <element ref="ptforms:hint"/>
+                                <element ref="ptforms:description"/>
+                                <element minOccurs="0" ref="ptforms:description-back"/>
+                                <element minOccurs="0" ref="ptforms:label-back"/>
+                                <element minOccurs="1" ref="ptforms:idcard-image-type"/>
+                            </sequence>
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="mandatory" type="xs:string"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="validation-param">
+                <complexType>
+                    <attribute name="id" type="xs:string" use="required"/>
+                    <attribute name="value" type="xs:string" use="required"/>
+                    <attribute name="blocker" type="xs:boolean"/>
+                    <attribute name="error_message" type="xs:string"/>
+                    <attribute name="distance" type="xs:int"/>
+                    <attribute name="condition" type="xs:string"/>
+                </complexType>
+            </element>
+            <element name="validation-params">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="1" ref="ptforms:validation-param"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="idcard-time2save">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="unit" type="xs:string" use="required"/>
+                            <attribute name="value" type="xs:int" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="idcard-time2close">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="unit" type="xs:string" use="required"/>
+                            <attribute name="value" type="xs:int" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="images">
+                <complexType>
+                    <choice maxOccurs="1">
+                        <sequence>
+                            <element minOccurs="0" ref="ptforms:steps"/>
+                            <element minOccurs="0" ref="ptforms:validate-document"/>
+                            <element minOccurs="0" ref="ptforms:validate-face"/>
+                            <element minOccurs="0" ref="ptforms:validate-identification-number"/>
+                            <element minOccurs="0" ref="ptforms:validate-params"/>
+                            <element minOccurs="0" ref="ptforms:show-captcha-page"/>
+                            <element minOccurs="0" ref="ptforms:show-welcome-page"/>
+                            <element minOccurs="0" ref="ptforms:close-on-ir"/>
+                            <element minOccurs="0" ref="ptforms:custom-text-template"/>
+                            <element minOccurs="0" ref="ptforms:style-template"/>
+                            <element minOccurs="0" ref="ptforms:sms-template"/>
+                            <element minOccurs="0" ref="ptforms:email-template"/>
+                            <element minOccurs="0" ref="ptforms:capture-method"/>
+                            <element minOccurs="0" ref="ptforms:notice-method"/>
+                            <element minOccurs="0" ref="ptforms:mobile-alt"/>
+                            <element minOccurs="0" ref="ptforms:email-alt"/>
+                            <element minOccurs="0" ref="ptforms:email-cc"/>
+                            <element minOccurs="0" ref="ptforms:idcard-time2save"/>
+                            <element minOccurs="0" ref="ptforms:idcard-time2close"/>
+                            <element minOccurs="0" ref="ptforms:ocr-method"/>
+                            <element minOccurs="0" ref="ptforms:validation-params"/>
+                            <element maxOccurs="unbounded" minOccurs="0" ref="ptforms:image"/>
+                            <element minOccurs="0" ref="ptforms:documents-category"/>
+                            <element minOccurs="0" ref="mp:metaProperties"/>
+                            <element minOccurs="0" ref="ptforms:support-email"/>
+                            <element minOccurs="0" ref="ptforms:email-subject"/>
+                            <element minOccurs="0" ref="ptforms:video-Purpose"/>
+                            <element minOccurs="0" ref="ptforms:show-QR-Notice"/>
+                        </sequence>
+                        <sequence>
+                            <element ref="ptforms:external-id"/>
+                        </sequence>
+                        <sequence>
+                            <element ref="ptforms:token-id"/>
+                        </sequence>
+                    </choice>
+                    <attribute name="id" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="imagesb64">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="front" type="xs:base64Binary"/>
+                            <attribute name="back" type="xs:base64Binary"/>
+                            <attribute name="selfie" type="xs:base64Binary"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="othersb64">
+                <complexType>
+                    <complexContent>
+                        <extension base="ptforms:label">
+                            <attribute name="id" type="xs:string" use="required"/>
+                            <attribute name="content" type="xs:base64Binary"/>
+                        </extension>
+                    </complexContent>
+                </complexType>
+            </element>
+            <element name="video">
+                <complexType>
+                    <choice maxOccurs="1">
+                        <sequence>
+                            <element minOccurs="0" ref="ptforms:video-attended"/>
+                            <element minOccurs="0" ref="ptforms:idcard-video"/>
+                            <element minOccurs="0" ref="ptforms:show-economic-data-page"/>
+                            <element minOccurs="0" ref="ptforms:show-personal-data-page"/>
+                            <element minOccurs="0" ref="ptforms:show-personal-info-page"/>
+                            <element minOccurs="0" ref="ptforms:show-capture-page"/>
+                            <element minOccurs="0" ref="ptforms:show-captcha-page"/>
+                            <element minOccurs="0" ref="ptforms:show-welcome-page"/>
+                            <element minOccurs="0" ref="ptforms:custom-text-template"/>
+                            <element minOccurs="0" ref="ptforms:style-template"/>
+                            <element minOccurs="0" ref="ptforms:sms-template"/>
+                            <element minOccurs="0" ref="ptforms:email-template"/>
+                            <element minOccurs="0" ref="ptforms:notice-method"/>
+                            <element minOccurs="0" ref="ptforms:email-cc"/>
+                            <element minOccurs="0" ref="ptforms:postpone-unattended-validation"/>
+                            <element minOccurs="0" ref="ptforms:support-email"/>
+                            <element minOccurs="0" ref="ptforms:email-subject"/>
+                            <element minOccurs="0" ref="ptforms:video-Purpose"/>
+                            <element minOccurs="0" ref="ptforms:show-QR-Notice"/>
+                        </sequence>
+                    </choice>
+                    <attribute name="id" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:core:identity:1.0">
+            <import namespace="urn:logalty:schemas:process:meta:1.0"/>
+            <import namespace="urn:logalty:schemas:request:meta:1.0"/>
+            <import namespace="urn:logalty:schemas:metaProperty:1.0"/>
+            <complexType name="person">
+                <sequence>
+                    <element ref="identity:personalData"/>
+                    <element ref="identity:contact"/>
+                    <element ref="identity:legalIdentity"/>
+                    <element minOccurs="0" ref="identity:representative"/>
+                </sequence>
+            </complexType>
+            <element name="person" type="identity:person">
+                <annotation>
+                    <documentation> Información del RECEPTOR </documentation>
+                </annotation>
+            </element>
+            <element name="receiver" type="identity:receiver"/>
+            <complexType name="receiver">
+                <complexContent>
+                    <extension base="identity:person">
+                        <sequence>
+                            <element minOccurs="0" ref="identity:additional_email_info"/>
+                            <element minOccurs="0" ref="identity:additional_email_info_uncompressed"/>
+                            <element minOccurs="0" ref="identity:extract_pdf_collections"/>
+                            <element minOccurs="0" ref="identity:contactEmailData"/>
+                            <element minOccurs="0" name="binarycontentrules">
+                                <complexType>
+                                    <sequence maxOccurs="unbounded">
+                                        <element ref="identity:binarycontentrule"/>
+                                    </sequence>
+                                </complexType>
+                            </element>
+                            <element minOccurs="0" ref="request_meta:receiverEndDownload"/>
+                        </sequence>
+                        <attribute name="receiver-id" type="xs:int" use="required"/>
+                        <attribute name="hideCertChangeUserMobile" type="xs:boolean" use="optional"/>
+                        <attribute name="show-general-conditions" type="xs:int" use="optional"/>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="additional_email_info" type="xs:string"/>
+            <element default="false" name="additional_email_info_uncompressed" nillable="true" type="xs:boolean"/>
+            <element default="false" name="extract_pdf_collections" nillable="true" type="xs:boolean"/>
+            <element name="contactEmailData">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" ref="identity:bodyEmail"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="binarycontentrule">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" ref="request_meta:signMethods"/>
+                        <element minOccurs="0" ref="request_meta:signMethodAlternative"/>
+                        <element minOccurs="0" ref="request_meta:authMethods"/>
+                        <element minOccurs="0" ref="request_meta:supervisionMethods"/>
+                        <element minOccurs="0" ref="request_meta:signBioparams"/>
+                        <element minOccurs="0" ref="process_meta:final_inform"/>
+                        <element minOccurs="0" ref="process_meta:serviceOnEnd"/>
+                        <element minOccurs="0" ref="process_meta:xforms_flow"/>
+                        <element minOccurs="0" ref="mp:metaProperties"/>
+                        <element minOccurs="0" ref="process_meta:visualPkiParameters"/>
+                        <element minOccurs="0" ref="request_meta:signTextparams"/>
+                        <element minOccurs="0" ref="request_meta:codeValidations"/>
+                        <element minOccurs="0" ref="request_meta:acceptanceMethod"/>
+                        <element minOccurs="0" ref="request_meta:QRCodeparams"/>
+                        <element minOccurs="0" ref="request_meta:signPkiCloudparams"/>
+                    </sequence>
+                    <attribute name="delegate-access-person-id" type="xs:int" use="optional"/>
+                    <attribute name="delegate-access-person-type" type="xs:string" use="optional"/>
+                    <attribute name="rule-comment" type="xs:string" use="optional"/>
+                    <attribute name="binarycontentrule-id" type="xs:int" use="required"/>
+                    <attribute name="binary-content-group-id" type="xs:int" use="required"/>
+                    <attribute name="order-sign-number" type="xs:int"/>
+                    <attribute name="notice-method" type="xs:string" use="optional"/>
+                    <attribute name="optional" type="xs:boolean" use="optional"/>
+                    <attribute name="additional_final_email" type="xs:string" use="optional"/>
+                    <attribute name="hide_cancel_button" type="xs:boolean" use="optional"/>
+                    <attribute name="show_exit_button" type="xs:boolean" use="optional"/>
+                    <attribute name="hide_change_mobile_button" type="xs:boolean" use="optional"/>
+                    <attribute name="enable_show_doc_page" type="xs:boolean" use="optional"/>
+                    <attribute name="hide_global_exit_button" type="xs:boolean" use="optional"/>
+                </complexType>
+            </element>
+            <element name="representative">
+                <complexType>
+                    <sequence>
+                        <element name="representativeType" type="xs:string"> </element>
+                        <!--  LISTA A ELEGIR  -->
+                        <element ref="identity:company"> </element>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="personalData">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:firstname"/>
+                        <element ref="identity:middlename"/>
+                        <element ref="identity:lastname1"/>
+                        <element ref="identity:lastname2"/>
+                        <element minOccurs="0" name="document" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="firstname" type="xs:string"/>
+            <element name="middlename" type="xs:string"/>
+            <element name="lastname1" type="xs:string"/>
+            <element name="lastname2" type="xs:string"/>
+            <element name="contact">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:uuid"/>
+                        <element ref="identity:phone"/>
+                        <element minOccurs="0" ref="identity:mobile"/>
+                        <element minOccurs="0" ref="identity:mobile_mask"/>
+                        <element minOccurs="0" ref="identity:hide_mobile"/>
+                        <element ref="identity:fax"/>
+                        <element minOccurs="0" ref="identity:email"/>
+                        <element minOccurs="0" ref="identity:address"/>
+                        <element minOccurs="0" ref="identity:order"/>
+                        <element minOccurs="0" ref="identity:address_comment"/>
+                        <element minOccurs="0" ref="identity:address_street"/>
+                        <element minOccurs="0" ref="identity:address_streetnum"/>
+                        <element minOccurs="0" ref="identity:address_state"/>
+                        <element minOccurs="0" ref="identity:address_city"/>
+                        <element minOccurs="0" ref="identity:address_zip"/>
+                        <element minOccurs="0" ref="identity:address_country"/>
+                        <element minOccurs="0" ref="identity:address_street_type"/>
+                        <element minOccurs="0" ref="identity:address_street_type_num"/>
+                        <element minOccurs="0" ref="identity:address_street_zone"/>
+                        <element minOccurs="0" ref="identity:address_street_floor"/>
+                        <element minOccurs="0" ref="identity:address_street_portal"/>
+                        <element minOccurs="0" ref="identity:address_street_door"/>
+                        <element minOccurs="0" ref="identity:address_att"/>
+                    </sequence>
+                    <attribute name="preferred" type="xs:string" use="optional"/>
+                    <attribute name="notice_method" type="xs:string" use="optional"/>
+                    <attribute name="notice_method_nested_tx" type="xs:string" use="optional"/>
+                    <attribute default="true" name="send_nested_tx" type="xs:boolean" use="optional"/>
+                    <attribute default="false" name="company" type="xs:boolean" use="optional"/>
+                    <attribute name="language" type="xs:string" use="optional"/>
+                </complexType>
+            </element>
+            <element name="uuid" type="xs:string"/>
+            <element name="phone" type="xs:string"/>
+            <element name="mobile" type="xs:string"/>
+            <element name="mobile_mask" type="xs:boolean"/>
+            <element name="hide_mobile" type="xs:boolean"/>
+            <element name="fax" type="xs:string"/>
+            <element name="email" type="xs:string"/>
+            <element name="address">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:street"/>
+                        <element ref="identity:city"/>
+                        <element ref="identity:state"/>
+                        <element ref="identity:zip"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="bodyEmail" type="xs:string"/>
+            <element name="street" type="xs:string"/>
+            <element name="city" type="xs:string"/>
+            <element name="state" type="xs:string"/>
+            <element name="zip" type="xs:string"/>
+            <element name="order" type="xs:int"/>
+            <element name="address_comment" type="xs:string"/>
+            <element name="address_street" type="xs:string"/>
+            <element name="address_streetnum" type="xs:string"/>
+            <element name="address_state" type="xs:string"/>
+            <element name="address_city" type="xs:string"/>
+            <element name="address_zip" type="xs:string"/>
+            <element name="address_country" type="xs:string"/>
+            <element name="address_street_type" type="xs:string"/>
+            <element name="address_street_type_num" type="xs:string"/>
+            <element name="address_street_zone" type="xs:string"/>
+            <element name="address_street_floor" type="xs:string"/>
+            <element name="address_street_portal" type="xs:string"/>
+            <element name="address_street_door" type="xs:string"/>
+            <element name="address_att" type="xs:string"/>
+            <element name="company">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:organizationName"/>
+                        <element minOccurs="1" ref="identity:legalIdentity"> </element>
+                        <element minOccurs="1" ref="identity:contact"> </element>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="organizationName" type="xs:string"/>
+            <element name="legalIdentity">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:type"/>
+                        <element ref="identity:jurisdictionCountry"/>
+                        <element ref="identity:issuer"/>
+                        <element ref="identity:id"/>
+                        <element ref="identity:certificate"/>
+                        <element minOccurs="0" ref="identity:certificateInRepo"/>
+                        <element minOccurs="0" ref="identity:certificateSerial"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="type" type="xs:string"/>
+            <element name="jurisdictionCountry" type="xs:string"> </element>
+            <element name="issuer" type="xs:string"/>
+            <element name="typeid" type="xs:string"/>
+            <element name="id" type="xs:string"/>
+            <element name="certificate" type="xs:string"/>
+            <element name="certificateInRepo" type="xs:boolean"/>
+            <element name="certificateSerial" type="xs:string"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:request:meta:1.0">
+            <import namespace="urn:logalty:schemas:core:identity:1.0"/>
+            <import namespace="urn:logalty:schemas:signBioparams:1.0"/>
+            <element name="service" type="xs:string">
+                <annotation>
+                    <documentation> Servicio que se solicita: Cadena de texto con los valores existentes para los procesos: PT0001_NOTIFICATION PT0002_ACCEPTANCE PT0003_NULLNOTIFICATION PT0005_ACCEPTANCEXPRESS PT0007_COMMUNICATION PT0008_ACREDITATION PT0009_CUSTODY PT0010_ACCREDITATIONEXPRESS PT0011_MESSAGE PT0012_CODE_MESSAGE </documentation>
+                </annotation>
+            </element>
+            <element name="time2start" nillable="true" type="xs:date">
+                <annotation>
+                    <documentation> Para diferir el inicio de una transacción. Momento en el cual se inicia la transacción El formato es conforme a http://books.xmlschemata.org/relaxng/ch19-77041.html. Ejemplo: [-]CCYY-MM-DD[Z|(+|-)hh:mm] </documentation>
+                </annotation>
+            </element>
+            <element name="time2startdatetime" nillable="true" type="xs:dateTime">
+                <annotation>
+                    <documentation> Para diferir el inicio de una transacción. Momento en el cual se inicia la transacción El formato es conforme a http://books.xmlschemata.org/relaxng/ch19-77041.html. Ejemplo: [-]CCYY-MM-DD[Z|(+|-)hh:mm] </documentation>
+                </annotation>
+            </element>
+            <element name="lopd" type="xs:int"/>
+            <element name="userdatatransfer" nillable="true" type="xs:int"/>
+            <element name="signlevel" nillable="true" type="xs:int"/>
+            <element name="retryprotocol" type="xs:int">
+                <annotation>
+                    <documentation> Número de veces que se solicita el uso de un protocolo de reenvío de emails para recordar al receptor que tiene un documento disponible Este valor sólo se tiene en cuenta en los procesos asíncronos Entero que indica el número de veces que se reenvía el correo de aviso. </documentation>
+                </annotation>
+            </element>
+            <element name="synchronous" type="xs:boolean">
+                <annotation>
+                    <documentation> Indica si es el proceso es síncrono o asíncrono Este valor aplica a la contratación dado que la notificación siempre es asíncrona </documentation>
+                </annotation>
+            </element>
+            <element name="tsa" type="xs:int"/>
+            <element name="cod_type" nillable="true" type="xs:string"/>
+            <element name="cod_service" nillable="true" type="xs:string"/>
+            <element name="cod_product" nillable="true" type="xs:string"/>
+            <element name="billing_product" nillable="true" type="xs:string"/>
+            <element name="nested_guid" nillable="true" type="xs:string"/>
+            <element name="launch_nested" nillable="true" type="xs:boolean"/>
+            <element name="nested_service" nillable="true" type="xs:string"/>
+            <element name="nested_receiver_uuid" nillable="true" type="xs:string"/>
+            <element name="document_delivery_type" nillable="true" type="xs:string"/>
+            <element name="edelivery" nillable="true" type="xs:boolean"/>
+            <element name="providerCode" nillable="true" type="xs:string"/>
+            <element name="acceptanceMethod" nillable="true" type="xs:string"/>
+            <element name="delegate" nillable="true" type="xs:string"/>
+            <element name="contractNif" nillable="true" type="xs:string"/>
+            <element name="requestCID" nillable="true" type="xs:long"/>
+            <element name="externalId" nillable="true" type="xs:string">
+                <annotation>
+                    <documentation> Identificador de transacción propio del cliente. Por defecto no permite duplicados de identificadores de cliente. </documentation>
+                </annotation>
+            </element>
+            <element name="duplicateKeyOff" nillable="true" type="xs:int">
+                <annotation>
+                    <documentation> Cuando se define un identificador de cliente con el campo anterior no se permiten duplicados, por lo que si se activa este campo sí que se permitirán duplicados en los identificadores. Para desactivar la detección de duplicados se ha de indicar el valor 1 </documentation>
+                </annotation>
+            </element>
+            <element name="userdefined">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="name" type="xs:string" use="required"/>
+                            <attribute name="origin" type="xs:string" use="optional"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="nested_override_child_params" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" ref="request_meta:time2close"/>
+                        <element minOccurs="0" ref="request_meta:retryprotocol"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="time2close">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="unit" type="xs:string" use="required"/>
+                            <attribute name="value" type="xs:int" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="time2save">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="unit" type="xs:string" use="required"/>
+                            <attribute name="value" type="xs:int" use="required"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="prefrank" nillable="true" type="xs:int"/>
+            <element name="aditionalEmailInfoExternalFolderResults" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="feedBackResultCode" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="aditionalEmailInfoResults" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="feedBackResultCode" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="authMethods" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="authMethod" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="supervisionMethods" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="supervisionMethod" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="supervisionEmail" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="signMethods" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="request_meta:signMethod"/>
+                    </sequence>
+                    <attribute name="pinType" type="xs:string" use="optional"/>
+                </complexType>
+            </element>
+            <element name="signMethod">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="channel" type="xs:string" use="optional"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="signTextparams" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" ref="signBioparams:advancedStampedTextParameters"/>
+                    </sequence>
+                    <attribute name="anotations" type="xs:boolean" use="optional"/>
+                    <attribute name="textFontSize" type="xs:float" use="optional"/>
+                    <attribute name="textFontType" type="xs:string" use="optional"/>
+                </complexType>
+            </element>
+            <element name="QRCodeparams" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="checkResult" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="checkDate" type="xs:dateTime"/>
+                        <element maxOccurs="1" minOccurs="0" ref="request_meta:dccParams"/>
+                    </sequence>
+                    <attribute name="tokenText" type="xs:string"/>
+                    <attribute name="type" type="xs:string"/>
+                    <attribute name="anotations" type="xs:boolean" use="optional"/>
+                    <attribute name="width" type="xs:int" use="optional"/>
+                    <attribute name="heigh" type="xs:int" use="optional"/>
+                    <attribute name="rotation" type="xs:int" use="optional"/>
+                </complexType>
+            </element>
+            <element name="dccParams">
+                <complexType>
+                    <all>
+                        <element maxOccurs="1" minOccurs="1" name="dob" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="expire" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" ref="request_meta:certificateParams"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="certificateParams">
+                <complexType>
+                    <choice>
+                        <element ref="request_meta:vaccinationParams"/>
+                        <element ref="request_meta:testParams"/>
+                        <element ref="request_meta:recoveryParams"/>
+                    </choice>
+                </complexType>
+            </element>
+            <element name="vaccinationParams">
+                <complexType>
+                    <all>
+                        <element maxOccurs="1" minOccurs="1" name="tg" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="vp" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="mp" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="ma" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="dn" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="sd" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="dt" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="co" nillable="true" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="is" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="ci" type="xs:string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="testParams">
+                <complexType>
+                    <all>
+                        <element maxOccurs="1" minOccurs="0" name="type" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="tg" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="tt" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="nm" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="ma" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="sc" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="tr" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="tc" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="co" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="is" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="ci" type="xs:string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="recoveryParams">
+                <complexType>
+                    <all>
+                        <element maxOccurs="1" minOccurs="1" name="tg" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="fr" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="co" nillable="true" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="is" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="df" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="du" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="1" name="ci" type="xs:string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="signBioparams" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" ref="signBioparams:advancedImageParameters"/>
+                    </sequence>
+                    <attribute name="type" type="xs:string" use="required"/>
+                    <attribute name="device" type="xs:string" use="required"/>
+                    <attribute name="deviceVersion" type="xs:string" use="required"/>
+                    <attribute name="visible" type="xs:boolean" use="required"/>
+                    <attribute name="logoUrl" type="xs:string" use="optional"/>
+                    <attribute name="btnLocation" type="xs:string" use="optional"/>
+                </complexType>
+            </element>
+            <element name="internal_pr" nillable="true" type="xs:string"/>
+            <element name="delegate_details" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:person"/>
+                        <element name="courier_additional_info" nillable="true" type="xs:string"/>
+                    </sequence>
+                    <attribute name="show" type="xs:int"/>
+                </complexType>
+            </element>
+            <element name="billing_ec" nillable="true" type="xs:string"/>
+            <element name="billing_details" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element ref="identity:personalData"/>
+                        <element ref="identity:legalIdentity"/>
+                        <element ref="identity:address_street"/>
+                        <element ref="identity:address_streetnum"/>
+                        <element ref="identity:address_state"/>
+                        <element ref="identity:address_city"/>
+                        <element ref="identity:address_zip"/>
+                        <element ref="identity:address_country"/>
+                        <element ref="identity:address_street_type"/>
+                        <element ref="identity:address_street_type_num"/>
+                        <element ref="identity:address_street_zone"/>
+                        <element ref="identity:address_street_floor"/>
+                        <element ref="identity:address_street_portal"/>
+                        <element ref="identity:address_street_door"/>
+                        <element ref="identity:email"/>
+                        <element name="payment_method" nillable="true" type="xs:string"/>
+                        <element name="payment_cond" nillable="true" type="xs:string"/>
+                        <element name="payment_status" nillable="true" type="xs:string"/>
+                        <element name="payment_acc" nillable="true" type="xs:string"/>
+                        <element name="payment_paymref" nillable="true" type="xs:string"/>
+                        <element name="billing_source" nillable="true" type="xs:string"/>
+                        <element name="billing_ec_tax" nillable="true" type="xs:string"/>
+                        <element name="billing_ec_commission" nillable="true" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="externalFolder" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element name="request_id" nillable="false" type="xs:int"/>
+                        <element name="last_request" nillable="false" type="xs:boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="nodeAcl">
+                <simpleType>
+                    <restriction base="xs:string">
+                        <minLength value="1"/>
+                        <maxLength value="250"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="nodeAcls">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="request_meta:nodeAcl"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="nodeCustody" type="xs:string"/>
+            <element name="stampedService" type="xs:boolean"/>
+            <element name="stampedServicePermissive" type="xs:boolean"/>
+            <element name="stampedOverrideSignature" type="xs:boolean"/>
+            <element name="redirectDelay" type="xs:int"/>
+            <element name="onePageXpress" type="xs:boolean"/>
+            <element name="onePageXpressAcp" type="xs:boolean"/>
+            <element name="receiverEndDownload">
+                <complexType>
+                    <sequence maxOccurs="1" minOccurs="0">
+                        <element ref="request_meta:questions"/>
+                    </sequence>
+                    <attribute name="level" type="xs:int"/>
+                    <attribute name="disabled" type="xs:boolean"/>
+                    <attribute name="documents" type="xs:string" use="optional"/>
+                </complexType>
+            </element>
+            <element name="questions">
+                <complexType>
+                    <sequence maxOccurs="unbounded">
+                        <element ref="request_meta:question"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="question">
+                <complexType>
+                    <attribute name="question" type="xs:string" use="required"/>
+                    <attribute name="answer" type="xs:string" use="required"/>
+                    <attribute name="locale" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="zoomPDFViewer" type="xs:float"/>
+            <element name="addSignersInfo" type="xs:boolean"/>
+            <element name="signStamped" type="xs:boolean"/>
+            <element name="signMethodAlternative" type="xs:string"/>
+            <element name="codeValidations">
+                <complexType>
+                    <attribute name="maxCodeValidations" type="xs:int" use="required"/>
+                    <attribute name="maxNewCodes" type="xs:int" use="required"/>
+                </complexType>
+            </element>
+            <element name="signPkiCloudparams" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" name="cloudProvider" nillable="true" type="xs:string"/>
+                        <element minOccurs="0" name="cloudCertType" nillable="true" type="xs:string"/>
+                        <element minOccurs="0" name="signerId" nillable="true" type="xs:string"/>
+                        <element minOccurs="0" ref="request_meta:otcRegistrationData"/>
+                        <element minOccurs="0" ref="request_meta:sigPolicies"/>
+                        <element minOccurs="0" ref="request_meta:profiles"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="otcRegistrationData" nillable="true">
+                <complexType>
+                    <all>
+                        <element maxOccurs="1" minOccurs="0" name="firstName" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="lastName" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="fathersName" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="email" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="mobile" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="idNumber" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="idNumberCountry" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="idNumberType" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="taxNumber" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="taxNumberCountry" type="xs:string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="sigPolicies" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="sigPolicyId" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="profiles" nillable="true">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="profile" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="extractRbmInfo" type="xs:boolean">
+                <annotation>
+                    <documentation> enable/disable RBM info extraction </documentation>
+                </annotation>
+            </element>
+            <element name="provimadCustody" nillable="false" type="xs:int">
+                <annotation>
+                    <documentation> Indicates whether the contract should go into custody and for how many days </documentation>
+                </annotation>
+            </element>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:signBioparams:1.0">
+            <element name="advancedStampedTextParameters">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" ref="signBioparams:StampedtextParameters"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="advancedImageParameters">
+                <complexType>
+                    <choice maxOccurs="unbounded" minOccurs="1">
+                        <element maxOccurs="unbounded" minOccurs="0" ref="signBioparams:BiometricImageParameters"/>
+                        <element maxOccurs="unbounded" minOccurs="0" ref="signBioparams:BiometricAcroFieldImageParameters"/>
+                    </choice>
+                </complexType>
+            </element>
+            <element name="StampedtextParameters">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" ref="signBioparams:tokenText"/>
+                        <element minOccurs="1" ref="signBioparams:textValue"/>
+                        <element minOccurs="0" ref="signBioparams:textFomatTransformations"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="BiometricImageParameters">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" ref="signBioparams:attachmentName"/>
+                        <element minOccurs="1" ref="signBioparams:signatureVisible"/>
+                        <element minOccurs="0" ref="signBioparams:imageTokenText"/>
+                        <element minOccurs="0" ref="signBioparams:offsetX"/>
+                        <element minOccurs="0" ref="signBioparams:offsetY"/>
+                        <element minOccurs="1" ref="signBioparams:autoSize"/>
+                        <element minOccurs="1" ref="signBioparams:height"/>
+                        <element minOccurs="1" ref="signBioparams:width"/>
+                        <element minOccurs="1" ref="signBioparams:rotate"/>
+                        <element minOccurs="1" ref="signBioparams:onAllPages"/>
+                        <element minOccurs="0" ref="signBioparams:onPage"/>
+                        <element minOccurs="0" ref="signBioparams:pages"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="BiometricAcroFieldImageParameters">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" ref="signBioparams:acroFieldName"/>
+                        <element minOccurs="0" ref="signBioparams:rotate"/>
+                        <element minOccurs="0" ref="signBioparams:mode"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="tokenText" type="xs:string"/>
+            <element name="textValue" type="xs:string"/>
+            <element name="textFomatTransformations" type="xs:string"/>
+            <element name="attachmentName" type="xs:string"/>
+            <element name="signatureVisible" type="xs:boolean"/>
+            <element name="imageTokenText" type="xs:string"/>
+            <element name="offsetX" type="xs:string"/>
+            <element name="offsetY" type="xs:string"/>
+            <element name="autoSize" type="xs:boolean"/>
+            <element name="height" type="xs:string"/>
+            <element name="width" type="xs:string"/>
+            <element name="rotate" type="xs:string"/>
+            <element name="onAllPages" type="xs:boolean"/>
+            <element name="onPage" type="xs:string"/>
+            <element name="pages" type="xs:string"/>
+            <element name="acroFieldName" type="xs:string"/>
+            <element name="mode" type="xs:integer"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:process:meta:1.0">
+            <import namespace="urn:logalty:schemas:core:identity:1.0"/>
+            <import namespace="urn:logalty:schemas:forms:1.0"/>
+            <element name="generator" type="xs:string"/>
+            <element name="creation-date" type="xs:dateTime"/>
+            <element name="language" type="xs:string"/>
+            <element name="additional_language" type="xs:string"/>
+            <element name="subject" type="xs:string"/>
+            <element name="body" type="xs:string"/>
+            <element name="url" type="xs:string"/>
+            <element name="url_back" type="xs:string"/>
+            <element name="email" type="xs:string"/>
+            <element name="email_from" type="xs:string"/>
+            <element name="enforce_download" type="xs:int"/>
+            <element name="enforce_download_non_html5" type="xs:int"/>
+            <element default="false" name="enforce_scroll" nillable="true" type="xs:boolean"/>
+            <element name="billing_info" type="xs:string"/>
+            <element name="receivers">
+                <annotation>
+                    <documentation> Información sobre todos los receptores del proceso. En caso de estar informado, deberá también estar informado pt:binarycontents </documentation>
+                </annotation>
+                <complexType>
+                    <sequence maxOccurs="unbounded">
+                        <element ref="identity:receiver"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="userdefined">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="name" type="xs:string" use="required"/>
+                            <attribute name="origin" type="xs:string" use="optional"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="additional_final_email">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="additional_email" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="additional_final_email_result">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="informTimeout" type="xs:boolean"/>
+                        <element maxOccurs="1" minOccurs="0" name="informCancel" type="xs:boolean"/>
+                        <element maxOccurs="1" minOccurs="0" name="informUserReject" type="xs:boolean"/>
+                        <element maxOccurs="1" minOccurs="0" name="informErrorPin" type="xs:boolean"/>
+                        <element maxOccurs="1" minOccurs="0" name="informErrorOcr" type="xs:boolean"/>
+                        <element maxOccurs="1" minOccurs="0" name="informPartialAccept" type="xs:boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="additional_email_info" type="xs:string"/>
+            <element default="false" name="additional_email_info_uncompressed" nillable="true" type="xs:boolean"/>
+            <element default="false" name="additional_email_acceptance" nillable="true" type="xs:boolean"/>
+            <element name="acceptance_email_info" type="xs:string"/>
+            <element default="false" name="extract_pdf_collections" nillable="true" type="xs:boolean"/>
+            <element name="xforms_flow">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="ptforms:form"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="final_inform">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" ref="process_meta:final_inform_text"/>
+                    </sequence>
+                    <attribute name="channel" type="xs:string"/>
+                </complexType>
+            </element>
+            <element name="final_inform_text">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="1" name="text" type="xs:string"/>
+                    </sequence>
+                    <attribute name="lang" type="xs:string"/>
+                    <attribute name="result" type="xs:int"/>
+                </complexType>
+            </element>
+            <element name="emailTemplate" type="xs:string"/>
+            <element name="smsTemplate" type="xs:string"/>
+            <element name="styleTemplate" type="xs:string"/>
+            <element name="customTextTemplate" type="xs:string"/>
+            <element name="customFeedbackTemplate" type="xs:string"/>
+            <element name="custom_style_data">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="mainColor" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="secondaryColor" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="auxiliarColor" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="emailLogo" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" ref="process_meta:webLogo"/>
+                        <element maxOccurs="1" minOccurs="0" name="fromSms" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="nameSms" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="fromEmail" type="xs:string"/>
+                        <element maxOccurs="1" minOccurs="0" name="bodyEmail" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="webLogo">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="type" type="xs:string" use="optional"> </attribute>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="serviceOnEnd">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xs:string">
+                            <attribute name="preferred" type="xs:string"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+            <element name="visualPkiParameters">
+                <complexType>
+                    <sequence>
+                        <element name="binaryImage" type="xs:string"/>
+                    </sequence>
+                    <attribute name="imageTokenText" type="xs:string" use="required"/>
+                    <attribute name="height" type="xs:decimal" use="required"/>
+                    <attribute name="width" type="xs:decimal" use="required"/>
+                    <attribute name="rotation" type="xs:decimal" use="required"/>
+                </complexType>
+            </element>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:logalty:schemas:metaProperty:1.0">
+            <element name="metaProperties">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" ref="mp:property"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="property">
+                <complexType>
+                    <sequence>
+                        <element ref="mp:localizedProperties"/>
+                        <element ref="mp:locations"/>
+                    </sequence>
+                    <attribute name="id" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="localizedProperties">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" ref="mp:localizedProperty"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="localizedProperty">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" name="label" type="xs:string"/>
+                        <element name="value" type="xs:string"/>
+                    </sequence>
+                    <attribute name="locale" type="xs:string" use="required"/>
+                </complexType>
+            </element>
+            <element name="locations">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" name="location" type="xs:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:logalty:schemas:services:1.0" xmlns:signBioparams="urn:logalty:schemas:signBioparams:1.0" xmlns:request_meta="urn:logalty:schemas:request:meta:1.0" xmlns:ptforms="urn:logalty:schemas:forms:1.0" xmlns:pt="urn:logalty:schemas:core:1.0" xmlns:process_meta="urn:logalty:schemas:process:meta:1.0" xmlns:mp="urn:logalty:schemas:metaProperty:1.0" xmlns:identity="urn:logalty:schemas:core:identity:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/2000/09/xmldsig#">
+            <simpleType name="CryptoBinary">
+                <restriction base="base64Binary"> </restriction>
+            </simpleType>
+            <element name="Signature" type="ds:SignatureType"/>
+            <complexType name="SignatureType">
+                <sequence>
+                    <element ref="ds:SignedInfo"/>
+                    <element ref="ds:SignatureValue"/>
+                    <element minOccurs="0" ref="ds:KeyInfo"/>
+                    <element maxOccurs="unbounded" minOccurs="0" ref="ds:Object"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <element name="SignatureValue" type="ds:SignatureValueType"/>
+            <complexType name="SignatureValueType">
+                <simpleContent>
+                    <extension base="base64Binary">
+                        <attribute name="Id" type="ID" use="optional"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <element name="SignedInfo" type="ds:SignedInfoType"/>
+            <complexType name="SignedInfoType">
+                <sequence>
+                    <element ref="ds:CanonicalizationMethod"/>
+                    <element ref="ds:SignatureMethod"/>
+                    <element maxOccurs="unbounded" ref="ds:Reference"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <element name="CanonicalizationMethod" type="ds:CanonicalizationMethodType"/>
+            <complexType mixed="true" name="CanonicalizationMethodType">
+                <sequence>
+                    <any maxOccurs="unbounded" minOccurs="0" namespace="##any"/>
+                    <!--  (0,unbounded) elements from (1,1) namespace  -->
+                </sequence>
+                <attribute name="Algorithm" type="anyURI" use="required"/>
+            </complexType>
+            <element name="SignatureMethod" type="ds:SignatureMethodType"/>
+            <complexType mixed="true" name="SignatureMethodType">
+                <sequence>
+                    <element minOccurs="0" name="HMACOutputLength" type="ds:HMACOutputLengthType"/>
+                    <any maxOccurs="unbounded" minOccurs="0" namespace="##other"/>
+                    <!--  (0,unbounded) elements from (1,1) external namespace  -->
+                </sequence>
+                <attribute name="Algorithm" type="anyURI" use="required"/>
+            </complexType>
+            <element name="Reference" type="ds:ReferenceType"/>
+            <complexType name="ReferenceType">
+                <sequence>
+                    <element minOccurs="0" ref="ds:Transforms"/>
+                    <element ref="ds:DigestMethod"/>
+                    <element ref="ds:DigestValue"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+                <attribute name="URI" type="anyURI" use="optional"/>
+                <attribute name="Type" type="anyURI" use="optional"/>
+            </complexType>
+            <element name="Transforms" type="ds:TransformsType"/>
+            <complexType name="TransformsType">
+                <sequence>
+                    <element maxOccurs="unbounded" ref="ds:Transform"/>
+                </sequence>
+            </complexType>
+            <element name="Transform" type="ds:TransformType"/>
+            <complexType mixed="true" name="TransformType">
+                <choice maxOccurs="unbounded" minOccurs="0">
+                    <any namespace="##other" processContents="lax"/>
+                    <!--  (1,1) elements from (0,unbounded) namespaces  -->
+                    <element name="XPath" type="string"/>
+                </choice>
+                <attribute name="Algorithm" type="anyURI" use="required"/>
+            </complexType>
+            <element name="DigestMethod" type="ds:DigestMethodType"/>
+            <complexType mixed="true" name="DigestMethodType">
+                <sequence>
+                    <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+                </sequence>
+                <attribute name="Algorithm" type="anyURI" use="required"/>
+            </complexType>
+            <element name="DigestValue" type="ds:DigestValueType"/>
+            <complexType name="DigestValueType">
+                <simpleContent>
+                    <extension base="base64Binary"/>
+                </simpleContent>
+            </complexType>
+            <element name="KeyInfo" type="ds:KeyInfoType"/>
+            <complexType mixed="true" name="KeyInfoType">
+                <choice maxOccurs="unbounded">
+                    <element ref="ds:KeyName"/>
+                    <element ref="ds:KeyValue"/>
+                    <element ref="ds:RetrievalMethod"/>
+                    <element ref="ds:X509Data"/>
+                    <element ref="ds:PGPData"/>
+                    <element ref="ds:SPKIData"/>
+                    <element ref="ds:MgmtData"/>
+                    <any namespace="##other" processContents="lax"/>
+                    <!--  (1,1) elements from (0,unbounded) namespaces  -->
+                </choice>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <element name="KeyName" type="string"/>
+            <element name="MgmtData" type="string"/>
+            <element name="KeyValue" type="ds:KeyValueType"/>
+            <complexType mixed="true" name="KeyValueType">
+                <choice>
+                    <element ref="ds:DSAKeyValue"/>
+                    <element ref="ds:RSAKeyValue"/>
+                    <any namespace="##other" processContents="lax"/>
+                </choice>
+            </complexType>
+            <element name="RetrievalMethod" type="ds:RetrievalMethodType"/>
+            <complexType name="RetrievalMethodType">
+                <sequence>
+                    <element minOccurs="0" ref="ds:Transforms"/>
+                </sequence>
+                <attribute name="URI" type="anyURI"/>
+                <attribute name="Type" type="anyURI" use="optional"/>
+            </complexType>
+            <element name="X509Data" type="ds:X509DataType"/>
+            <complexType name="X509DataType">
+                <sequence maxOccurs="unbounded">
+                    <choice>
+                        <element name="X509IssuerSerial" type="ds:X509IssuerSerialType"/>
+                        <element name="X509SKI" type="base64Binary"/>
+                        <element name="X509SubjectName" type="string"/>
+                        <element name="X509Certificate" type="base64Binary"/>
+                        <element name="X509CRL" type="base64Binary"/>
+                        <any namespace="##other" processContents="lax"/>
+                    </choice>
+                </sequence>
+            </complexType>
+            <complexType name="X509IssuerSerialType">
+                <sequence>
+                    <element name="X509IssuerName" type="string"/>
+                    <element name="X509SerialNumber" type="integer"/>
+                </sequence>
+            </complexType>
+            <element name="PGPData" type="ds:PGPDataType"/>
+            <complexType name="PGPDataType">
+                <choice>
+                    <sequence>
+                        <element name="PGPKeyID" type="base64Binary"/>
+                        <element minOccurs="0" name="PGPKeyPacket" type="base64Binary"/>
+                        <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+                    </sequence>
+                    <sequence>
+                        <element name="PGPKeyPacket" type="base64Binary"/>
+                        <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+                    </sequence>
+                </choice>
+            </complexType>
+            <element name="SPKIData" type="ds:SPKIDataType"/>
+            <complexType name="SPKIDataType">
+                <sequence maxOccurs="unbounded">
+                    <element name="SPKISexp" type="base64Binary"/>
+                    <any minOccurs="0" namespace="##other" processContents="lax"/>
+                </sequence>
+            </complexType>
+            <element name="Object" type="ds:ObjectType"/>
+            <complexType mixed="true" name="ObjectType">
+                <sequence maxOccurs="unbounded" minOccurs="0">
+                    <any namespace="##any" processContents="lax"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+                <attribute name="MimeType" type="string" use="optional"/>
+                <!--  add a grep facet  -->
+                <attribute name="Encoding" type="anyURI" use="optional"/>
+            </complexType>
+            <element name="Manifest" type="ds:ManifestType"/>
+            <complexType name="ManifestType">
+                <sequence>
+                    <element maxOccurs="unbounded" ref="ds:Reference"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <element name="SignatureProperties" type="ds:SignaturePropertiesType"/>
+            <complexType name="SignaturePropertiesType">
+                <sequence>
+                    <element maxOccurs="unbounded" ref="ds:SignatureProperty"/>
+                </sequence>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <element name="SignatureProperty" type="ds:SignaturePropertyType"/>
+            <complexType mixed="true" name="SignaturePropertyType">
+                <choice maxOccurs="unbounded">
+                    <any namespace="##other" processContents="lax"/>
+                    <!--  (1,1) elements from (1,unbounded) namespaces  -->
+                </choice>
+                <attribute name="Target" type="anyURI" use="required"/>
+                <attribute name="Id" type="ID" use="optional"/>
+            </complexType>
+            <simpleType name="HMACOutputLengthType">
+                <restriction base="integer"/>
+            </simpleType>
+            <element name="DSAKeyValue" type="ds:DSAKeyValueType"/>
+            <complexType name="DSAKeyValueType">
+                <sequence>
+                    <sequence minOccurs="0">
+                        <element name="P" type="ds:CryptoBinary"/>
+                        <element name="Q" type="ds:CryptoBinary"/>
+                    </sequence>
+                    <element minOccurs="0" name="G" type="ds:CryptoBinary"/>
+                    <element name="Y" type="ds:CryptoBinary"/>
+                    <element minOccurs="0" name="J" type="ds:CryptoBinary"/>
+                    <sequence minOccurs="0">
+                        <element name="Seed" type="ds:CryptoBinary"/>
+                        <element name="PgenCounter" type="ds:CryptoBinary"/>
+                    </sequence>
+                </sequence>
+            </complexType>
+            <element name="RSAKeyValue" type="ds:RSAKeyValueType"/>
+            <complexType name="RSAKeyValueType">
+                <sequence>
+                    <element name="Modulus" type="ds:CryptoBinary"/>
+                    <element name="Exponent" type="ds:CryptoBinary"/>
+                </sequence>
+            </complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="request">
+        <wsdl:part element="pt:request" name="request"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="response">
+        <wsdl:part element="pt:response" name="response"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="IncomingServicePortType">
+        <wsdl:operation name="processDocument">
+            <wsdl:input message="tns:request" name="request"> </wsdl:input>
+            <wsdl:output message="tns:response" name="response"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="IncomingServiceHttpBinding" type="tns:IncomingServicePortType">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="processDocument">
+            <wsdlsoap:operation soapAction="processDocument"/>
+            <wsdl:input name="request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="IncomingService">
+        <wsdl:port binding="tns:IncomingServiceHttpBinding" name="IncomingServicePort">
+            <wsdlsoap:address location="https://www.demo.logalty.es/lgt/lgtbus/public/IncomingService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

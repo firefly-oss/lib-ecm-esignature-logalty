@@ -10,9 +10,13 @@ import com.firefly.core.ecm.adapter.EcmAdapter;
 import com.firefly.core.ecm.domain.enums.esignature.EnvelopeStatus;
 import com.firefly.core.ecm.domain.enums.esignature.SignatureProvider;
 import com.firefly.core.ecm.domain.model.esignature.SignatureEnvelope;
+import com.firefly.core.ecm.domain.model.esignature.SignatureRequest;
 import com.firefly.core.ecm.port.document.DocumentContentPort;
 import com.firefly.core.ecm.port.document.DocumentPort;
 import com.firefly.core.ecm.port.esignature.SignatureEnvelopePort;
+import com.firefly.ecm.adapter.logalty.dtos.BinaryContentsDTO;
+import com.firefly.ecm.adapter.logalty.mappers.SignatureMapper;
+import com.firefly.ecm.adapter.logalty.services.SignatureService;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
 import io.github.resilience4j.retry.Retry;
@@ -27,11 +31,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.nio.file.Files;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Logalty eSignature envelope adapter implementation.
@@ -79,6 +86,7 @@ public class LogaltySignatureEnvelopeAdapter implements SignatureEnvelopePort {
     private final DocumentPort documentPort;
     private final CircuitBreaker circuitBreaker;
     private final Retry retry;
+    private final SignatureService signatureService;
 
     // In-memory mappings (replace with persistent storage in production)
     private final Map<UUID, String> envelopeIdMapping = new ConcurrentHashMap<>();
@@ -93,7 +101,8 @@ public class LogaltySignatureEnvelopeAdapter implements SignatureEnvelopePort {
                                          DocumentContentPort documentContentPort,
                                          DocumentPort documentPort,
                                          @Qualifier("logaltyCircuitBreaker") CircuitBreaker circuitBreaker,
-                                         @Qualifier("logaltyRetry") Retry retry) {
+                                         @Qualifier("logaltyRetry") Retry retry,
+                                         SignatureService signatureService) {
         this.webClient = webClient;
         this.properties = properties;
         this.objectMapper = objectMapper;
@@ -101,9 +110,42 @@ public class LogaltySignatureEnvelopeAdapter implements SignatureEnvelopePort {
         this.documentPort = documentPort;
         this.circuitBreaker = circuitBreaker;
         this.retry = retry;
+        this.signatureService = signatureService;
         
         log.info("Logalty eSignature adapter initialized with base URL: {}", properties.getBaseUrl());
     }
+
+    public Mono<SignatureEnvelope> sendToSign(SignatureEnvelope envelope) {
+
+        BinaryContentsDTO binary = new BinaryContentsDTO();
+        binary.setBinaryContentId(1);
+        binary.setGroupId(1);
+        try {
+            byte[] bytes = Files.readAllBytes(java.nio.file.Paths.get("src/main/resources/pdf/original.pdf"));
+            binary.setContents(bytes);
+        } catch (java.io.IOException e) {
+            log.error("Unable to load binary contents from file", e);
+            throw new RuntimeException("Unable to load binary contents from file: src/main/resources/pdf/original.pdf", e);
+        }
+        binary.setEncoding("BASE64");
+        binary.setFilename("original");
+        binary.setExtension("pdf");
+        binary.setType("application/pdf");
+
+        return Mono.fromCallable(() ->
+                signatureService.initSignature(SignatureMapper.toReceiverDTOs(envelope.getSignatureRequests()), List.of(binary))
+            )
+            .map(result -> envelope.toBuilder()
+                .provider(SignatureProvider.LOGALTY)
+                .status(EnvelopeStatus.SENT)
+                .build()
+            )
+            .transformDeferred(CircuitBreakerOperator.of(circuitBreaker))
+            .transformDeferred(RetryOperator.of(retry))
+            .doOnError(e -> log.error("Failed to send envelope to sign via Logalty: {}", e.getMessage(), e));
+    }
+
+
 
     @Override
     public Mono<SignatureEnvelope> createEnvelope(SignatureEnvelope envelope) {

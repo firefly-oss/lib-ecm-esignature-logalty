@@ -4,6 +4,8 @@
 package com.firefly.ecm.adapter.logalty;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.logalty.interfaces.XmlSignInterface;
+import com.logalty.sdk.sign.XmlSigner;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.retry.Retry;
@@ -41,7 +43,7 @@ import java.time.Duration;
  */
 @Slf4j
 @AutoConfiguration
-@EnableConfigurationProperties(LogaltyAdapterProperties.class)
+@EnableConfigurationProperties({LogaltyAdapterProperties.class, SignatureProperties.class})
 @ComponentScan(basePackages = "com.firefly.ecm.adapter.logalty")
 @ConditionalOnProperty(name = "firefly.ecm.esignature.provider", havingValue = "logalty")
 public class LogaltyAdapterAutoConfiguration {
@@ -139,5 +141,20 @@ public class LogaltyAdapterAutoConfiguration {
     public ObjectMapper logaltyObjectMapper() {
         return new ObjectMapper()
             .findAndRegisterModules();
+    }
+
+    /**
+     * Provides a singleton XmlSignInterface (XmlSigner) bean to avoid creating
+     * a new signer instance for every request.
+     *
+     * @param signatureProperties properties containing certificate path and PIN
+     * @return configured XmlSignInterface implementation
+     */
+    @Bean
+    public XmlSignInterface logaltyXmlSigner(SignatureProperties signatureProperties) {
+        return new XmlSigner(
+            signatureProperties.getCertPath(),
+            signatureProperties.getCertPin().toCharArray()
+        );
     }
 }
